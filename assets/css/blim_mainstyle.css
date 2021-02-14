@@ -1,0 +1,26 @@
+.suggested_post {
+    background: rgb(255 255 255);
+    width: 200px!important;
+    border-radius: 0.5rem;
+    padding: 18px;
+}
+.suggested_post a{
+    text-decoration: none;
+}
+.suggested_post img {
+    max-height: 164px;
+}
+
+.suggested_post .blim_title {
+    font-size:3rem;
+}
+.suggested_post button {
+padding: 7px 45px!important;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.suggested_post small{
+    display: block;
+    padding-top: 10px;
+}
