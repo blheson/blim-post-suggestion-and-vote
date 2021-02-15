@@ -2,7 +2,8 @@
 
 namespace Controller;
 
-use View\Suggestion as Suggestion;
+use View\Suggestion\SuggestionMain as Suggestion;
+use Controller\BlimAdminController as Admin;
 use WP_Post;
 
 class BlimMainController
@@ -10,6 +11,7 @@ class BlimMainController
     function __construct()
     {
         $this->activate_add_action();
+        $this->activate_filter_action();
         $this->enqueue_action();
     }
 
@@ -23,7 +25,14 @@ class BlimMainController
     /**
      * Activate hook action
      */
+    /**
+     * Activate hook action
+     */
     function activate_add_action()
+    {
+        add_action('admin_menu', array('Controller\BlimAdminController', 'admin_menu'));
+    }
+    function activate_filter_action()
     {
         add_filter('the_content', array($this, 'get_post_sibling'));
     }
