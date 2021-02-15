@@ -37,6 +37,7 @@ define('BLIM_BANDARVENDOR_PATH', BLIM_VENDOR_PATH . DIRECTORY_SEPARATOR . 'banda
 // ===================
 define('BLIM_VIEW_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'view');
 define('BLIM_SUGGESTIONVIEW_PATH', BLIM_VIEW_PATH . DIRECTORY_SEPARATOR . 'suggestion');
+define('BLIM_ADMINVIEW_PATH', BLIM_VIEW_PATH . DIRECTORY_SEPARATOR . 'admin');
 
 // ===================
 // = CSS Path =

@@ -1,7 +1,7 @@
 <?php
-Namespace View;
+Namespace View\Suggestion;
 use WP_Post;
-class Suggestion
+class SuggestionMain
 {
     /**
      * Show view
