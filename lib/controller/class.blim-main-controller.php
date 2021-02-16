@@ -3,10 +3,12 @@
 namespace Controller;
 
 use View\Suggestion\SuggestionMain as Suggestion;
-use Controller\BlimAdminController as Admin;
+use Controller\Blim_Admin_Controller as Admin;
+use Controller\Blim_Option_Controller as Option;
+
 use WP_Post;
 
-class BlimMainController
+class Blim_Main_Controller
 {
     function __construct()
     {
@@ -22,20 +24,38 @@ class BlimMainController
     {
         wp_enqueue_style(PLUGIN_NAME, BLIM_MAINSTYLE_PATH, array(), VER, 'all');
     }
-    /**
-     * Activate hook action
-     */
+
     /**
      * Activate hook action
      */
     function activate_add_action()
     {
-        add_action('admin_menu', array('Controller\BlimAdminController', 'admin_menu'));
+        if (is_admin()) { // admin actions
+            add_action('admin_menu', array('Controller\Blim_Option_Controller', 'blim_register_option_page'));
+            // add_action('admin_menu', array('Controller\Blim_Admin_Controller', 'admin_menu'));
+            
+            //
+            add_action('admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
+            // submit form to admin post
+            // add_action( 'admin_post_update', array('Controller\Blim_Option_Controller', 'blim_feature_update'));
+        } else {
+            // non-admin enqueues, actions, and filters
+        }
+        register_activation_hook(BLIM_FILE, array('Controller\Blim_Option_Controller', 'plugin_activation'));
+        /**
+ * The code that runs during plugin deactivation.
+ * This action is documented inc/core/class-deactivator.php
+ */
+
+register_deactivation_hook( BLIM_FILE, array('Controller\Blim_Option_Controller', 'plugin_deactivation') );
     }
     function activate_filter_action()
     {
+        $options = get_option('blim_options');
+        if(in_array($options['feature'],['both','suggestion']))
         add_filter('the_content', array($this, 'get_post_sibling'));
     }
+
     /**
      * Get similar post
      * @param string $content

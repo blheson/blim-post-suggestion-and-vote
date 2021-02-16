@@ -10,7 +10,7 @@
  * Text Path: /blessing
  * Network: True
  * */
-define('BLIM_FILE',__FILE__);
+define('BLIM_FILE', __FILE__);
 
 //constants 
 require_once dirname(BLIM_FILE) . DIRECTORY_SEPARATOR . 'constant.php';
@@ -20,5 +20,4 @@ require_once dirname(BLIM_FILE) . DIRECTORY_SEPARATOR . 'loader.php';
 // =========================================================================
 // = All app initialization is done in BlimMainController __constructor =
 // =========================================================================
-$main_controller = new Controller\BlimMainController();
-
+$main_controller = new Controller\Blim_Main_Controller();

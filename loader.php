@@ -6,17 +6,20 @@
 //controller class
 require_once BLIM_CONTROLLER_PATH .
     DIRECTORY_SEPARATOR .
-    'BlimExportController.class.php';
+    'class.blim-export-controller.php';
 require_once BLIM_CONTROLLER_PATH .
     DIRECTORY_SEPARATOR .
-    'BlimAdminController.class.php';
+    'class.blim-admin-controller.php';
 require_once BLIM_CONTROLLER_PATH .
     DIRECTORY_SEPARATOR .
-    'BlimMainController.class.php';
+    'class.blim-option-controller.php';
+require_once BLIM_CONTROLLER_PATH .
+    DIRECTORY_SEPARATOR .
+    'class.blim-main-controller.php';
 
 //view
 require_once BLIM_SUGGESTIONVIEW_PATH .
-    DIRECTORY_SEPARATOR . 'SuggestionMain.php';
+    DIRECTORY_SEPARATOR . 'suggestion_main.php';
 
     // require_once BLIM_ADMINVIEW_PATH .
     // DIRECTORY_SEPARATOR . 'AdminMain.php';

@@ -1,8 +1,8 @@
 <?php
 
 namespace Controller;
-use Controller\BlimExportController;
-class BlimAdminController
+use Controller\Blim_Export_Controller;
+class Blim_Admin_Controller
 {
 
     static function admin_menu()
@@ -13,7 +13,7 @@ class BlimAdminController
             'Blim Page Modifier',
             'export',
             'blim_modify',
-            'Controller\BlimExportController::admin',
+            'Controller\Blim_Export_Controller::plugin_options_page',
             '',
             '77.295'
         );

@@ -24,3 +24,25 @@ padding: 7px 45px!important;
     display: block;
     padding-top: 10px;
 }
+.row2 {
+    grid-auto-columns: 48%;
+    grid-auto-rows: 300px;
+    display: grid;
+    width: 100%;
+    gap: 4%;
+    grid-template-areas: "a a";
+}
+
+.blim_dashboard_box {
+    padding: 1rem;
+    background-color: #fff;
+    margin-bottom: 2rem
+}
+
+.group_input {
+    padding-bottom: 1rem;
+}
+
+.container {
+    padding: 1rem;
+}
