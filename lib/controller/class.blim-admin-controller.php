@@ -17,15 +17,5 @@ class Blim_Admin_Controller
             '',
             '77.295'
         );
-
-        // // Sub-level Export menu
-        // add_submenu_page(
-        //     'ai1wm_export',
-        //     __('Export', AI1WM_PLUGIN_NAME),
-        //     __('Export', AI1WM_PLUGIN_NAME),
-        //     'export',
-        //     'ai1wm_export',
-        //     'Ai1wm_Export_Controller::index'
-        // );
     }
 }

@@ -1,7 +1,7 @@
 <?php
 Namespace View\Suggestion;
 use WP_Post;
-class SuggestionMain
+class Suggestion_Main
 {
     /**
      * Show view
@@ -10,6 +10,7 @@ class SuggestionMain
      */
     static function show(WP_Post $sibling_post)
     {
+    
             $title = $sibling_post->post_title;
             $title = strlen($title) > 30 ? substr($title, 0, 30).'...': $title;
         return '

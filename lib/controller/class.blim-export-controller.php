@@ -3,7 +3,8 @@
 namespace Controller;
 
 use WP_Post;
-use View\Suggestion\SuggestionMain;
+use View\Suggestion\Suggestion_Main;
+use View\Vote\Vote_Main as vote;
 use View\Admin\AdminMain;
 
 class Blim_Export_Controller
@@ -15,7 +16,16 @@ class Blim_Export_Controller
      */
     static function suggestion(WP_Post $sibling_post)
     {
-        return SuggestionMain::show($sibling_post);
+        return Suggestion_Main::show($sibling_post);
+    }
+    /**
+     * Render suggested post into view
+     * @param array $vote_details
+     * @return string
+     */
+    static function vote($vote_details)
+    {
+        return vote::show($vote_details);
     }
     /**
      * Render suggested post into view

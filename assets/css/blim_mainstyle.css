@@ -46,3 +46,28 @@ padding: 7px 45px!important;
 .container {
     padding: 1rem;
 }
+.blim-vote{
+    padding: 1rem 2rem;
+    background-color: rgb(255 255 255);
+    border-radius: 5px;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+.blim-vote.blim-vote-up{
+    border-left: 4px solid rgb(14 196 179);
+     color: rgb(32 124 115);
+}
+.blim-vote.blim-vote-down{
+    border-right: 4px solid rgb(184, 36, 36);
+    color: rgb(168, 4, 4)
+}
+@media (max-width:769px){
+    .row2 {
+        grid-auto-columns: 100%;
+        grid-auto-rows: 300px;
+        display: grid;
+        width: 100%;
+        gap: 4%;
+        grid-template-areas: "a";
+    }
+}
