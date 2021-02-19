@@ -1,6 +1,7 @@
 <?php
 
 $options = get_option('blim_options');
+// print_r($options);
 $option = $options['feature'];
 
 ?>

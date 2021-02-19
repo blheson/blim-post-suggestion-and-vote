@@ -23,9 +23,14 @@ class Blim_Export_Controller
      * @param array $vote_details
      * @return string
      */
-    static function vote($vote_details)
+    static function vote($vote_data)
     {
-        return vote::show($vote_details);
+        //   echo BLIM_ADMINVIEW_PATH;
+        ob_start();
+        vote_show($vote_data);
+        return ob_get_clean();
+
+        // return vote::show($vote_details);
     }
     /**
      * Render suggested post into view
@@ -38,6 +43,5 @@ class Blim_Export_Controller
         ob_start();
         include BLIM_ADMINVIEW_PATH . '\admin_main.php';
         echo ob_get_clean();
-        // return AdminMain::dashboard();
     }
 }

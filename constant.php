@@ -5,23 +5,32 @@
  */
 // Basic constants
 define('PLUGIN_NAME', 'BLIM');
+
 define('VER', 'v1.0');
+
 define('URL_SLASH', '/');
+
 define('MIN_PHP', '5.6.0');
+
 // Plugin Basename
 define('BLIM_PLUGIN_BASENAME', basename(BLIM_FILE));
 
 // Plugin Path & URL
 define('BLIM_PATH', dirname(BLIM_FILE));
+
 define('BLIM_URL', plugin_dir_url(BLIM_FILE));
 
 // ===================
 // = Top Paths =
 // ===================
 define('BLIM_LIB_PATH', BLIM_PATH . DIRECTORY_SEPARATOR . 'lib');
+
+define('BLIM_AJAX_PATH', BLIM_PATH . DIRECTORY_SEPARATOR . 'ajax');
+
 define('BLIM_ASSETS_PATH', BLIM_URL . 'assets');
+
 // ===================
-// = Controller Path =
+// = Activator Path =
 // ===================
 define('BLIM_ACTIVATOR_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'activator');
 
@@ -31,16 +40,24 @@ define('BLIM_ACTIVATOR_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'activator')
 define('BLIM_CONTROLLER_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'controller');
 
 // ===================
+// = Model Path =
+// ===================
+define('BLIM_MODEL_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'model');
+
+// ===================
 // = Vendor Path =
 // ===================
 define('BLIM_VENDOR_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'vendor');
+
 define('BLIM_BANDARVENDOR_PATH', BLIM_VENDOR_PATH . DIRECTORY_SEPARATOR . 'bandar');
 
 // ===================
 // = View Path =
 // ===================
 define('BLIM_VIEW_PATH', BLIM_LIB_PATH . DIRECTORY_SEPARATOR . 'view');
+
 define('BLIM_SUGGESTIONVIEW_PATH', BLIM_VIEW_PATH . DIRECTORY_SEPARATOR . 'suggestion');
+
 define('BLIM_ADMINVIEW_PATH', BLIM_VIEW_PATH . DIRECTORY_SEPARATOR . 'admin');
 define('BLIM_VOTEVIEW_PATH', BLIM_VIEW_PATH . DIRECTORY_SEPARATOR . 'vote');
 
@@ -61,3 +78,5 @@ define('BLIM_MAINSCRIPT_PATH', BLIM_ASSETSJS_PATH . URL_SLASH . 'blim_mainscript
 // ===================
 define('BLIM_ASSETSIMG_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'img');
 define('BLIM_DEFAULT_IMAGE', BLIM_ASSETSIMG_PATH . URL_SLASH . 'default.jpg');
+
+

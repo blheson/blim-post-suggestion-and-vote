@@ -38,7 +38,8 @@ class Blim_Main_Controller
             // add_action('admin_menu', array('Controller\Blim_Admin_Controller', 'admin_menu'));
 
             //
-            add_action('admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
+            add_action('init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
+            // add_action('admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
 
         } else {
             // non-admin enqueues, actions, and filters
@@ -69,7 +70,7 @@ class Blim_Main_Controller
         if (in_array($options['feature'], ['both', 'suggestion']))
             $blim_content .= $this->get_post_sibling();
         if (in_array($options['feature'], ['both', 'vote']))
-            $blim_content .= vote::get_votes();
+            $blim_content .= vote::show(get_the_ID());
         return $content . $blim_content;
     }
     /**
