@@ -10,7 +10,6 @@ define('VER', 'v1.0');
 
 define('URL_SLASH', '/');
 
-define('MIN_PHP', '5.6.0');
 
 // Plugin Basename
 define('BLIM_PLUGIN_BASENAME', basename(BLIM_FILE));
@@ -25,7 +24,9 @@ define('BLIM_URL', plugin_dir_url(BLIM_FILE));
 // ===================
 define('BLIM_LIB_PATH', BLIM_PATH . DIRECTORY_SEPARATOR . 'lib');
 
-define('BLIM_AJAX_PATH', BLIM_PATH . DIRECTORY_SEPARATOR . 'ajax');
+define('BLIM_AJAX_URI', BLIM_URL .  'ajax');
+
+define('BLIM_AJAX_PATH', BLIM_PATH . DIRECTORY_SEPARATOR .'ajax');
 
 define('BLIM_ASSETS_PATH', BLIM_URL . 'assets');
 
@@ -68,7 +69,7 @@ define('BLIM_ASSETSCSS_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'css');
 define('BLIM_MAINSTYLE_PATH', BLIM_ASSETSCSS_PATH . URL_SLASH . 'blim_mainstyle.css');
 
 // ===================
-// = CSS Path =
+// = JS Path =
 // ===================
 define('BLIM_ASSETSJS_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'js');
 define('BLIM_MAINSCRIPT_PATH', BLIM_ASSETSJS_PATH . URL_SLASH . 'blim_mainscript.js');
@@ -78,5 +79,3 @@ define('BLIM_MAINSCRIPT_PATH', BLIM_ASSETSJS_PATH . URL_SLASH . 'blim_mainscript
 // ===================
 define('BLIM_ASSETSIMG_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'img');
 define('BLIM_DEFAULT_IMAGE', BLIM_ASSETSIMG_PATH . URL_SLASH . 'default.jpg');
-
-

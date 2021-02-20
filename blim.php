@@ -18,9 +18,8 @@
 defined( 'ABSPATH' ) or die( 'Normal humans go through the door' );
 
 define( 'BLIM_FILE', __FILE__ );
+define('MIN_PHP', '5.6.0');
 
-//constants 
-require_once dirname( BLIM_FILE ) . DIRECTORY_SEPARATOR . 'constant.php';
 
 // Check PHP Version and deactivate & die if it doesn't meet minimum requirements.
 if ( version_compare( PHP_VERSION, MIN_PHP, '<' ) ) {

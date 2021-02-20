@@ -1,4 +1,6 @@
 <?php
+//constants 
+require_once dirname( BLIM_FILE ) . DIRECTORY_SEPARATOR . 'constant.php';
 
 /**
  * This is where all the classes are loaded
@@ -36,5 +38,5 @@ require_once BLIM_VOTEVIEW_PATH .
     DIRECTORY_SEPARATOR . 'vote_main.php';
     
 //Ajax
-require_once BLIM_AJAX_PATH .
-    DIRECTORY_SEPARATOR . 'update-vote.php';
+// require_once BLIM_AJAX_PATH .
+//     DIRECTORY_SEPARATOR . 'update-vote.php';
