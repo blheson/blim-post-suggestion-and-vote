@@ -1,7 +1,6 @@
 <?php
 
 $options = get_option('blim_options');
-// print_r($options);
 $option = $options['feature'];
 
 ?>
@@ -22,13 +21,13 @@ $option = $options['feature'];
                     <label for="">
                         <input type="checkbox" name="vote" value="vote" <?= ($option == 'both' || $option == 'vote') ? 'checked' : '' ?>><?= _e('Vote') ?></label>
                 </div>
-                <!-- admin_url('options.php') -->
+          
                 <form action='options.php' method="post">
                     <?php settings_fields('blim_options_group'); ?>
                     <div class="">
                         <input id='blim_options_check' name="blim_options[feature]" type='hidden' value=<?= $option ?> />
                         <?php
-                        // do_settings_sections('blim_option_settings');
+                 
                         submit_button(); ?>
                     </div>
                 </form>

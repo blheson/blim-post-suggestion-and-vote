@@ -4,8 +4,6 @@ namespace Controller;
 
 use WP_Post;
 use View\Suggestion\Suggestion_Main;
-use View\Vote\Vote_Main as vote;
-use View\Admin\AdminMain;
 
 class Blim_Export_Controller
 {
@@ -25,23 +23,18 @@ class Blim_Export_Controller
      */
     static function vote($vote_data)
     {
-        //   echo BLIM_ADMINVIEW_PATH;
         ob_start();
         vote_show($vote_data);
         return ob_get_clean();
-
-        // return vote::show($vote_details);
     }
     /**
      * Render suggested post into view
-     * 
      * @return string
      */
     static function plugin_options_page()
     {
-        // echo BLIM_ADMINVIEW_PATH;
         ob_start();
-        include BLIM_ADMINVIEW_PATH . '\admin_main.php';
+        include_once BLIM_ADMINVIEW_PATH . '\admin_main.php';
         echo ob_get_clean();
     }
 }

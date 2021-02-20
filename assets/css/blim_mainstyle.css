@@ -69,6 +69,11 @@ padding: 7px 45px!important;
     border-right: 4px solid rgb(184, 36, 36);
     color: rgb(168, 4, 4)
 }
+p.vote-message{
+    background-color: rgb(255 255 255);
+    width: 20rem;
+    padding: 9px;
+}
 @media (max-width:769px){
     .row2 {
         grid-auto-columns: 100%;

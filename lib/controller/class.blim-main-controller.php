@@ -2,13 +2,8 @@
 
 namespace Controller;
 
-use View\Suggestion\Suggestion_Main as Suggestion;
-use Controller\Blim_Admin_Controller as Admin;
-use Controller\Blim_Option_Controller as Option;
 use Controller\Blim_Export_Controller as export;
 use Controller\Blim_Vote_Controller as vote;
-
-use WP_Post;
 
 class Blim_Main_Controller
 {
@@ -20,14 +15,17 @@ class Blim_Main_Controller
 
     /**
      * Enqueue all styles and assets
+     * @return void
      */
-    function enqueue_action(): void
+    function enqueue_action()
     {
         wp_enqueue_style(PLUGIN_NAME . 'main_style', BLIM_MAINSTYLE_PATH, array(), VER, 'all');
+
         wp_enqueue_script(PLUGIN_NAME . '_main_js', BLIM_MAINSCRIPT_PATH, array(), VER, 'all');
+
         wp_localize_script(
             PLUGIN_NAME . '_main_js',
-            'ajax_object',
+            'vote_object',
             array('ajax_url' => admin_url('admin-ajax.php'), 'post_id' => get_the_ID())
         );
     }
@@ -39,22 +37,18 @@ class Blim_Main_Controller
     {
         if (is_admin()) { // admin actions
             add_action('admin_menu', array('Controller\Blim_Option_Controller', 'blim_register_option_page'));
-            // add_action('admin_menu', array('Controller\Blim_Admin_Controller', 'admin_menu'));
 
-
-
-            // add_action('admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
             add_action('wp_ajax_update_vote_count', array('Controller\Blim_Vote_Controller', 'update'));
+
             add_action('wp_ajax_nopriv_update_vote_count', array('Controller\Blim_Vote_Controller', 'update'));
+
             add_action('admin_enqueue_scripts', array($this, 'enqueue_action'));
+
+            add_action('admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
         } else {
             // non-admin enqueues, actions, and filters
             add_action('wp_enqueue_scripts', array($this, 'enqueue_action'));
         }
-
-        add_action('init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
-
-        add_action('init', array($this, 'set_ajax_data'));
 
         register_activation_hook(BLIM_FILE, array('Activator\Blim_Activator', 'plugin_activation'));
         /**
@@ -64,27 +58,20 @@ class Blim_Main_Controller
 
         register_deactivation_hook(BLIM_FILE, array('Activator\Blim_Activator', 'plugin_deactivation'));
     }
-    function set_ajax_data()
-    {
-    //    var_dump( wp_localize_script(
-    //         PLUGIN_NAME . '_main_js',
-    //         'ajax_object',
-    //         array('ajax_url' => admin_url('admin-ajax.php'), 'post_id' => get_the_ID())
-    //     ));
-        // echo 'here';
-    }
     /**
      * Filter hook
+     * @return void
      */
-    function activate_filter_action(): void
+    function activate_filter_action()
     {
         add_filter('the_content', array($this, 'show_feature'));
     }
     /**
      * Render feature to users
      * @param string $content
+     * @return string
      */
-    function show_feature($content): string
+    function show_feature($content)
     {
         $options = get_option('blim_options');
         $blim_content = '';
@@ -114,8 +101,9 @@ class Blim_Main_Controller
      * Conjure a new view from post category
      * @param int $cat_id Category id
      * @param int $current_post_id Current post id
+     * @return string
      */
-    function generate(int $cat_id, int $current_post_id)
+    function generate($cat_id, $current_post_id)
     {
         $args = array(
             'numberposts'   => 1,

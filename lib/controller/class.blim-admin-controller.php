@@ -4,7 +4,9 @@ namespace Controller;
 use Controller\Blim_Export_Controller;
 class Blim_Admin_Controller
 {
-
+    /**
+     * Add settings page to menu
+     */
     static function admin_menu()
     {
         // Top-level WP Migration menu

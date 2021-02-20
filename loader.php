@@ -3,7 +3,7 @@
 require_once dirname( BLIM_FILE ) . DIRECTORY_SEPARATOR . 'constant.php';
 
 /**
- * This is where all the classes are loaded
+ * This is where all the classes and views are loaded
  */
 //activator
 require_once BLIM_ACTIVATOR_PATH .
@@ -14,7 +14,7 @@ require_once BLIM_ACTIVATOR_PATH .
 require_once BLIM_MODEL_PATH .
     DIRECTORY_SEPARATOR . 'class-wpdb.php';
 
-//controller class
+//controller classes
 require_once BLIM_CONTROLLER_PATH .
     DIRECTORY_SEPARATOR .
     'class.blim-export-controller.php';
@@ -37,6 +37,3 @@ require_once BLIM_SUGGESTIONVIEW_PATH .
 require_once BLIM_VOTEVIEW_PATH .
     DIRECTORY_SEPARATOR . 'vote_main.php';
     
-//Ajax
-// require_once BLIM_AJAX_PATH .
-//     DIRECTORY_SEPARATOR . 'update-vote.php';
