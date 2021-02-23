@@ -11,7 +11,7 @@ class Blim_Activator
      */
     function plugin_activation()
     {
-        add_option('blim_options', ['feature' => 'both']);
+        add_option( 'blim_options', ['feature' => 'both'] );
     }
     /**
      * Run when plugin is deactivated
@@ -19,6 +19,6 @@ class Blim_Activator
      */
     function plugin_deactivation()
     {
-        delete_option('blim_options');
+        delete_option( 'blim_options' );
     }
 }

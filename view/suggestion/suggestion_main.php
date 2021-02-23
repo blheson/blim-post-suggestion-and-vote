@@ -8,11 +8,11 @@ class Suggestion_Main
      * @param WP_Post $sibling_post
      * @return string
      */
-    static function show(WP_Post $sibling_post)
+    static function show( WP_Post $sibling_post )
     {
     
             $title = $sibling_post->post_title;
-            $title = strlen($title) > 30 ? substr($title, 0, 30).'...': $title;
+            $title = strlen( $title ) > 30 ? substr( $title, 0, 30 ).'...': $title;
         return '
             <section class="suggested_post">
                <a href="' . $sibling_post->permalink . '"> <div><img src="'.$sibling_post->image.'"></div>

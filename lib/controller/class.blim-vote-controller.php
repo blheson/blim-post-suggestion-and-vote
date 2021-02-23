@@ -93,14 +93,20 @@ class Blim_Vote_Controller
         $vote_up = (int)$_REQUEST['vote_up'];
         $vote_down = (int)$_REQUEST['vote_down'];
         $post_id = (int) $_REQUEST['post_id'];
+        $nonce = $_REQUEST['_wpnonce'];
+
+      if( !wp_verify_nonce( $nonce, 'vote_'.$post_id ) ){
+          $res = false;
+      }else{
         $wpdb = self::get_wpdb();
-        $meta_value = serialize(array('voteup' => $vote_up, 'votedown' => $vote_down));
+        $meta_value = serialize( array( 'voteup' => $vote_up, 'votedown' => $vote_down ) );
 
         $res = $wpdb->update( $wpdb->prefix . 'postmeta',
-            array('meta_value' => $meta_value),
-            array('post_id' => $post_id, 'meta_key' => $meta_key)
+            array( 'meta_value' => $meta_value ),
+            array( 'post_id' => $post_id, 'meta_key' => $meta_key )
         );
-        echo self::json_output($res);
+    }
+        echo self::json_output( $res );
         exit;
     }
     /**
@@ -112,13 +118,13 @@ class Blim_Vote_Controller
         //response output
         header("Content-Type: application/json");
 
-        $message = (false === $res) ? json_encode(['error' => 'Vote was not successful']) : (
-            (0 == $res) ?
-            json_encode(['success' => 'Thank you for voting, but your vote was not counted.']) :
-            json_encode(['success' => 'Thank you for voting.']));
+        $message = ( false === $res ) ? json_encode(['status'=>400,'message' => 'Vote was not successful'] ) : (
+            ( 0 == $res ) ?
+            json_encode( ['message' => 'Thank you for voting, but your vote was not counted.']) :
+            json_encode( ['message' => 'Thank you for voting.'] ) );
 
         if ( false === $res )
-            http_response_code(404);
+            http_response_code( 400 );
 
         return $message;
     }

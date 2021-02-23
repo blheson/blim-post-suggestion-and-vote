@@ -1,6 +1,6 @@
 <?php
 
-$options = get_option('blim_options');
+$options = get_option( 'blim_options' );
 $option = $options['feature'];
 
 ?>
@@ -15,19 +15,18 @@ $option = $options['feature'];
             <div>
                 <div class="group_input">
                     <label for="">
-                        <input type="checkbox" name="showsuggestion" value="suggestion" <?= ($option == 'both' || $option == 'suggestion') ? 'checked' : '' ?>><?= _e('Show Post Suggestion') ?></label>
+                        <input type="checkbox" name="showsuggestion" value="suggestion" <?= ($option == 'both' || $option == 'suggestion') ? 'checked' : '' ?>><?= _e( 'Show Post Suggestion' ) ?></label>
                 </div>
                 <div class="group_input">
                     <label for="">
-                        <input type="checkbox" name="vote" value="vote" <?= ($option == 'both' || $option == 'vote') ? 'checked' : '' ?>><?= _e('Vote') ?></label>
+                        <input type="checkbox" name="vote" value="vote" <?= ($option == 'both' || $option == 'vote') ? 'checked' : '' ?>><?= _e( 'Vote' ) ?></label>
                 </div>
           
                 <form action='options.php' method="post">
-                    <?php settings_fields('blim_options_group'); ?>
+                    <?php settings_fields( 'blim_options_group' ); ?>
                     <div class="">
                         <input id='blim_options_check' name="blim_options[feature]" type='hidden' value=<?= $option ?> />
-                        <?php
-                 
+                        <?php                 
                         submit_button(); ?>
                     </div>
                 </form>

@@ -12,19 +12,19 @@ class Blim_Export_Controller
      * @param WP_Post $sibling_post
      * @return string
      */
-    static function suggestion(WP_Post $sibling_post)
+    static function suggestion( WP_Post $sibling_post )
     {
-        return Suggestion_Main::show($sibling_post);
+        return Suggestion_Main::show( $sibling_post );
     }
     /**
      * Render suggested post into view
      * @param array $vote_details
      * @return string
      */
-    static function vote($vote_data)
+    static function vote( $vote_data )
     {
         ob_start();
-        vote_show($vote_data);
+        vote_show( $vote_data );
         return ob_get_clean();
     }
     /**

@@ -19,14 +19,14 @@ class Blim_Main_Controller
      */
     function enqueue_action()
     {
-        wp_enqueue_style(PLUGIN_NAME . 'main_style', BLIM_MAINSTYLE_PATH, array(), VER, 'all');
+        wp_enqueue_style( PLUGIN_NAME . 'main_style', BLIM_MAINSTYLE_PATH, array(), VER, 'all' );
 
-        wp_enqueue_script(PLUGIN_NAME . '_main_js', BLIM_MAINSCRIPT_PATH, array(), VER, 'all');
+        wp_enqueue_script( PLUGIN_NAME . '_main_js', BLIM_MAINSCRIPT_PATH, array(), VER, 'all' );
 
         wp_localize_script(
             PLUGIN_NAME . '_main_js',
             'vote_object',
-            array('ajax_url' => admin_url('admin-ajax.php'), 'post_id' => get_the_ID())
+            array('ajax_url' => admin_url('admin-ajax.php'), 'post_id' => get_the_ID(),'_wpnonce'=> wp_create_nonce( 'vote_'.get_the_ID()))
         );
     }
 
@@ -36,27 +36,27 @@ class Blim_Main_Controller
     function activate_add_action()
     {
         if (is_admin()) { // admin actions
-            add_action('admin_menu', array('Controller\Blim_Option_Controller', 'blim_register_option_page'));
+            add_action( 'admin_menu', array('Controller\Blim_Option_Controller', 'blim_register_option_page') );
 
-            add_action('wp_ajax_update_vote_count', array('Controller\Blim_Vote_Controller', 'update'));
+            add_action( 'wp_ajax_update_vote_count', array('Controller\Blim_Vote_Controller', 'update') );
 
-            add_action('wp_ajax_nopriv_update_vote_count', array('Controller\Blim_Vote_Controller', 'update'));
+            add_action( 'wp_ajax_nopriv_update_vote_count', array('Controller\Blim_Vote_Controller', 'update') );
 
-            add_action('admin_enqueue_scripts', array($this, 'enqueue_action'));
+            add_action( 'admin_enqueue_scripts', array($this, 'enqueue_action') );
 
-            add_action('admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings'));
+            add_action( 'admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings') );
         } else {
             // non-admin enqueues, actions, and filters
-            add_action('wp_enqueue_scripts', array($this, 'enqueue_action'));
+            add_action( 'wp_enqueue_scripts', array($this, 'enqueue_action') );
         }
 
-        register_activation_hook(BLIM_FILE, array('Activator\Blim_Activator', 'plugin_activation'));
+        register_activation_hook( BLIM_FILE, array('Activator\Blim_Activator', 'plugin_activation') );
         /**
          * The code that runs during plugin deactivation.
          * This action is documented activator/class.blim-activator.php
          */
 
-        register_deactivation_hook(BLIM_FILE, array('Activator\Blim_Activator', 'plugin_deactivation'));
+        register_deactivation_hook( BLIM_FILE, array( 'Activator\Blim_Activator', 'plugin_deactivation' ) );
     }
     /**
      * Filter hook
@@ -64,21 +64,22 @@ class Blim_Main_Controller
      */
     function activate_filter_action()
     {
-        add_filter('the_content', array($this, 'show_feature'));
+        add_filter( 'the_content', array( $this, 'show_feature' ) );
     }
     /**
      * Render feature to users
      * @param string $content
      * @return string
      */
-    function show_feature($content)
+    function show_feature( $content )
     {
-        $options = get_option('blim_options');
+        $options = get_option( 'blim_options' );
         $blim_content = '';
-        if (in_array($options['feature'], ['both', 'suggestion']))
+        if ( in_array( $options['feature'], ['both', 'suggestion'] ) ) 
             $blim_content .= $this->get_post_sibling();
         if (in_array($options['feature'], ['both', 'vote']))
-            $blim_content .= vote::show(get_the_ID());
+            $blim_content .= vote::show( get_the_ID() );
+        
         return $content . $blim_content;
     }
     /**
@@ -86,13 +87,13 @@ class Blim_Main_Controller
      * @param string $content
      * @return string
      */
-    function get_post_sibling($content = '')
+    function get_post_sibling( $content = '' )
     {
-        if (is_single() && !empty($GLOBALS['post'])) {
+        if (is_single() && !empty( $GLOBALS['post'] )) {
             $current_post_id = get_the_ID();
-            if ($GLOBALS['post']->ID == $current_post_id) {
+            if ( $GLOBALS['post']->ID == $current_post_id ) {
 
-                $content .= $this->generate(get_the_category()[0]->term_id, $current_post_id);
+                $content .= $this->generate( get_the_category()[0]->term_id, $current_post_id );
             }
         }
         return $content;
@@ -103,7 +104,7 @@ class Blim_Main_Controller
      * @param int $current_post_id Current post id
      * @return string
      */
-    function generate($cat_id, $current_post_id)
+    function generate( $cat_id, $current_post_id )
     {
         $args = array(
             'numberposts'   => 1,
@@ -112,12 +113,12 @@ class Blim_Main_Controller
             'exclude' => $current_post_id
         );
         $sibling_post = get_posts($args)[0];
-        if (is_null($sibling_post))
+        if ( is_null($sibling_post) )
             return '';
-        $permalink = get_permalink($sibling_post);
+        $permalink = get_permalink( $sibling_post );
         $sibling_post->permalink = $permalink ? $permalink : $sibling_post->guid;
-        $thumbnail = get_the_post_thumbnail_url($sibling_post);
+        $thumbnail = get_the_post_thumbnail_url( $sibling_post );
         $sibling_post->image = $thumbnail ? $thumbnail : BLIM_DEFAULT_IMAGE;
-        return export::suggestion($sibling_post);
+        return export::suggestion( $sibling_post );
     }
 }
