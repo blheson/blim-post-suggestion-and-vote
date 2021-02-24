@@ -64,7 +64,9 @@ class Blim_Main_Controller
      */
     function activate_filter_action()
     {
+        
         add_filter( 'the_content', array( $this, 'show_feature' ) );
+        
     }
     /**
      * Render feature to users
@@ -75,11 +77,13 @@ class Blim_Main_Controller
     {
         $options = get_option( 'blim_options' );
         $blim_content = '';
+        if ( is_single() && !empty( $GLOBALS['post'] ))
+        {
         if ( in_array( $options['feature'], ['both', 'suggestion'] ) ) 
             $blim_content .= $this->get_post_sibling();
         if (in_array($options['feature'], ['both', 'vote']))
             $blim_content .= vote::show( get_the_ID() );
-        
+        }
         return $content . $blim_content;
     }
     /**
@@ -107,16 +111,18 @@ class Blim_Main_Controller
     function generate( $cat_id, $current_post_id )
     {
         $args = array(
-            'numberposts'   => 1,
+            'numberposts'   => rand(1,3),
             'category'         =>  $cat_id,
-            'order'            => 'DESC',
+            'order'            => rand( 0, 1 ) ? 'DESC' : 'ASC',
             'exclude' => $current_post_id
         );
-        $sibling_post = get_posts($args)[0];
+     
+        $sibling_post = get_posts( $args )[0];
         if ( is_null($sibling_post) )
             return '';
         $permalink = get_permalink( $sibling_post );
-        $sibling_post->permalink = $permalink ? $permalink : $sibling_post->guid;
+        $sibling_post->permalink = $permalink ? $permalink :
+        $sibling_post->guid;
         $thumbnail = get_the_post_thumbnail_url( $sibling_post );
         $sibling_post->image = $thumbnail ? $thumbnail : BLIM_DEFAULT_IMAGE;
         return export::suggestion( $sibling_post );

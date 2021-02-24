@@ -21,7 +21,6 @@ define( 'BLIM_FILE', __FILE__ );
 
 define( 'MIN_PHP', '5.6.0' );
 
-
 // Check PHP Version and deactivate & die if it doesn't meet minimum requirements.
 if ( version_compare( PHP_VERSION, MIN_PHP, '<' ) ) {
     deactivate_plugins( plugin_basename( BLIM_FILE ) );
@@ -29,7 +28,6 @@ if ( version_compare( PHP_VERSION, MIN_PHP, '<' ) ) {
 }
 // loader
 require_once dirname( BLIM_FILE ) . DIRECTORY_SEPARATOR . 'loader.php';
-
 
 // =========================================================================
 // = All app initialization is done in BlimMainController __constructor =

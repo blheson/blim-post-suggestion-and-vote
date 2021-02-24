@@ -1,4 +1,4 @@
-=== LiteSpeed Cache ===
+=== Blim Post Suggestion and Vote ===
 Contributors: Udor Blessing
 Tags: posts, vote
 Requires at least: 4.0
@@ -11,8 +11,10 @@ A simple plugin that suggests post and offer vote feature
 
 == Description ==
 
-Blim Post Suggestion and Vote (BPSV) is a plugin that suggests posts based on the category of the current post.
+Blim Post Suggestion and Vote (BPSV) is a plugin that suggests posts based on the category of the current post. 
+The plugin comes fully setup, therefore, you are not required to perform any setup after activating BPSV. 
 
+However, you can decide to manually, choose among the features offered by BPSV. You simply got to the general settings menu then click on Blim Post Suggestion and Vote.
 
 == Requirements ==
 **General Features** may be used by anyone with any web server (BPSV, Apache, NGINX, etc.).
@@ -22,16 +24,30 @@ Blim Post Suggestion and Vote (BPSV) is a plugin that suggests posts based on th
 = General Features =
 
 * Suggests posts
+As the heading implies, the plugin gets a post related by category to the current post and suggests to reader
+
 * Vote up and Vote down
-
+Readers can vote up or down on various posts.
 == BPSV Resources ==
-* [Ask a question on our support forum](https://wordpress.org/support/plugin/litespeed-cache/).
 
-* [LSCWP GitHub repo](https://github.com/blheson/blim-post-suggestion-and-vote).
+* [BPSV GitHub repo](https://github.com/blheson/blim-post-suggestion-and-vote).
 
-== Installation ==
+== Installation =
+= Through Dashboard =
+Log in to your WordPress admin panel and go to Plugins -> Add New
+Type Blim Post Suggestion and Vote in the search box and click on search button.
+Find Blim Post Suggestion and Vote.
+Then click on Install
+Now after that activate the plugin.
 
-[View detailed documentation](https://docs.litespeedtech.com/lscache/lscwp/installation/).
+
+= Installing Via FTP =
+Download the plugin to your hardisk.
+Unzip.
+Upload the recent-posts-widget-extended folder into your plugins directory.
+Log in to your WordPress admin panel and click the Plugins menu.
+Then activate the plugin.
+
 
 
 == Frequently Asked Questions ==
@@ -40,7 +56,7 @@ Blim Post Suggestion and Vote (BPSV) is a plugin that suggests posts based on th
 
 Yes, BPSV offers the ability to choose which feature is needed for your website. This can be set at the general admin settings under the "blim settings" sub menu. You can also decide to temporarily disable both features if you want, without uninstalling the plugin. 
 
-= Is the LiteSpeed Cache Plugin for WordPress free? =
+= Is the BPSV for WordPress free? =
 
 Yes, BPSV will always be free and open source. 
 

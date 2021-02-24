@@ -1,7 +1,7 @@
 <?php
 
 namespace Activator;
-
+use Controller\Blim_Vote_Controller as vote;
 class Blim_Activator
 {
     /**
@@ -9,7 +9,7 @@ class Blim_Activator
      * @return void
      * 
      */
-    function plugin_activation()
+    static function plugin_activation()
     {
         add_option( 'blim_options', ['feature' => 'both'] );
     }
@@ -17,8 +17,11 @@ class Blim_Activator
      * Run when plugin is deactivated
      * @return void
      */
-    function plugin_deactivation()
+    static function plugin_deactivation()
     {
+        // reset options
         delete_option( 'blim_options' );
+        //delete all store votes
+        vote::delete();
     }
 }

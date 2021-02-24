@@ -25,11 +25,15 @@ function vote_show($vote_data)
                 <p>
                     <?= $vote_data['votedown']  ?>
                 </p>
-                
+
             </div>
             <input type="hidden" name="voteup" value="<?= $vote_data['voteup'] ?>">
             <input type="hidden" name="votedown" value="<?= $vote_data['votedown'] ?>">
             <input id='ajax_vote_uri' name='' type='hidden' value='<?= BLIM_AJAX_URI . '/update-vote.php' ?>' />
-            </form>
-        <?php
-    }
+
+        </div>
+        <!-- end of vote -->
+    </div>
+        <!-- vote end -->
+<?php
+}

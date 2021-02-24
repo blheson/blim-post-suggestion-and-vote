@@ -10,6 +10,7 @@ class Blim_Vote_Controller
     public static $wpdb;
 
     public static $table;
+    public static $meta_key = 'vote';
     /**
      * Get table name for post meta
      * @return strin
@@ -33,10 +34,9 @@ class Blim_Vote_Controller
     /**
      * Get vote data from database
      * @param int $post_id
-     * @param string $meta_key
      * @return array
      */
-    static function get_votes( $post_id, $meta_key = 'vote' )
+    static function get_votes( $post_id )
     {
 
         if ((int) $post_id < 1 )
@@ -47,13 +47,12 @@ class Blim_Vote_Controller
 
         $results = $wpdb->get_var($wpdb->prepare(
             "SELECT meta_value FROM $table WHERE meta_key = %s AND post_id= %d",
-            $meta_key,
+            self::$meta_key,
             $post_id
         ));
-
         if (is_null($results)) {
             $results = ['voteup' => 0, 'votedown' => 0];
-            self::store($post_id, serialize($results));
+            self::store( $post_id, serialize($results) ) ;
         }
         return $results;
     }
@@ -75,13 +74,13 @@ class Blim_Vote_Controller
      * Save new meta value to post
      * @param int $post_id
      * @param string $meta_value Serialized array of vote up and vote down values
-     * @param string $meta_key post
+     * @return int|false
      */
-    static function store( $post_id, $meta_value, $meta_key = 'vote' )
+    static function store( $post_id, $meta_value )
     {
         $wpdb = self::get_wpdb();
 
-        $wpdb->insert( $wpdb->prefix . 'postmeta', array( 'post_id' => $post_id, 'meta_key' => $meta_key, 'meta_value' => $meta_value));
+      return $wpdb->insert( $wpdb->prefix . 'postmeta', array( 'post_id' => $post_id, 'meta_key' => self::$meta_key, 'meta_value' => $meta_value));
     }
     /**
      * Update post meta
@@ -89,7 +88,7 @@ class Blim_Vote_Controller
      */
     static function update()
     {
-        $meta_key = 'vote';
+     
         $vote_up = (int)$_REQUEST['vote_up'];
         $vote_down = (int)$_REQUEST['vote_down'];
         $post_id = (int) $_REQUEST['post_id'];
@@ -103,11 +102,16 @@ class Blim_Vote_Controller
 
         $res = $wpdb->update( $wpdb->prefix . 'postmeta',
             array( 'meta_value' => $meta_value ),
-            array( 'post_id' => $post_id, 'meta_key' => $meta_key )
+            array( 'post_id' => $post_id, 'meta_key' => self::$meta_key )
         );
     }
         echo self::json_output( $res );
         exit;
+    }
+    static function delete(){
+        $wpdb = self::get_wpdb();
+        $wpdb->delete( $wpdb->prefix . 'postmeta',
+        array( 'meta_key' => self::$meta_key ));
     }
     /**
      * Response output for vote ajax request
@@ -116,7 +120,7 @@ class Blim_Vote_Controller
     static function json_output( $res )
     {
         //response output
-        header("Content-Type: application/json");
+        header( "Content-Type: application/json" );
 
         $message = ( false === $res ) ? json_encode(['status'=>400,'message' => 'Vote was not successful'] ) : (
             ( 0 == $res ) ?
@@ -128,4 +132,5 @@ class Blim_Vote_Controller
 
         return $message;
     }
+    
 }

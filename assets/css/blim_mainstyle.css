@@ -1,8 +1,13 @@
 .suggested_post {
     background: rgb(255 255 255);
-    width: 200px!important;
+    /* width: 200px!important; */
+    width: 333px!important;
     border-radius: 0.5rem;
     padding: 18px;
+}
+.suggested_post:hover{
+    background: rgb(238 238 238);
+
 }
 .suggested_post a{
     text-decoration: none;
@@ -12,7 +17,8 @@
 }
 
 .suggested_post .blim_title {
-    font-size:3rem;
+    font-size:2.5rem;
+    line-height: 1.2;
 }
 .suggested_post button {
 padding: 7px 45px!important;
@@ -46,6 +52,12 @@ padding: 7px 45px!important;
 .container {
     padding: 1rem;
 }
+.blim-vote:hover{
+    background-color: rgb(238, 238, 238);
+}
+.blim-vote:focus,.blim-vote:active,.blim-vote:visited{
+    box-shadow: none
+}
 .blim-vote{
     padding: 1rem;
     width: 121px;
@@ -55,6 +67,7 @@ padding: 7px 45px!important;
     border-radius: 5px;
     font-size: 0.7em;
     cursor: pointer;
+    box-shadow: 0px 2px 3px #c1c1c1;
 }
 .blim-vote .vote-number{
     box-shadow: inset 0 0 4px 0px #c8d8db;
@@ -85,6 +98,19 @@ p.vote-message{
     width: 20rem;
     padding: 9px;
 }
+@media (min-width:769px){
+    .suggest_row{
+        grid-auto-columns: 48%;
+        grid-auto-rows: 134px;
+        display: grid;
+        width: 100%;
+        gap: 4%;
+        grid-template-areas: "a a";
+    }
+    .suggested_post .blim_title{
+        height: 96px;
+    }
+}
 @media (max-width:769px){
     .row2 {
         grid-auto-columns: 100%;
@@ -93,5 +119,8 @@ p.vote-message{
         width: 100%;
         gap: 4%;
         grid-template-areas: "a";
+    }
+    .suggested_post {
+        width: 200px!important;
     }
 }

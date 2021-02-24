@@ -35,12 +35,12 @@ function get_uri() {
 
 if (vote_up != null) {
 
-    document.querySelector('span#vote-up').addEventListener('click', () => {
+    document.querySelector('div#vote-up').addEventListener('click', () => {
         send_fetch(parseInt(vote_up.value) + 1, vote_down.value);
     })
 }
 if (vote_down != null) {
-    document.querySelector('span#vote-down').addEventListener('click', () => {
+    document.querySelector('div#vote-down').addEventListener('click', () => {
         send_fetch(vote_up.value, (parseInt(vote_down.value) + 1));
     })
 }

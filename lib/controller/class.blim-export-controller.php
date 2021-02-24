@@ -3,7 +3,6 @@
 namespace Controller;
 
 use WP_Post;
-use View\Suggestion\Suggestion_Main;
 
 class Blim_Export_Controller
 {
@@ -14,7 +13,9 @@ class Blim_Export_Controller
      */
     static function suggestion( WP_Post $sibling_post )
     {
-        return Suggestion_Main::show( $sibling_post );
+        ob_start();
+        suggestion_show( $sibling_post );
+        return ob_get_clean();
     }
     /**
      * Render suggested post into view
@@ -33,8 +34,8 @@ class Blim_Export_Controller
      */
     static function plugin_options_page()
     {
-        ob_start();
-        include_once BLIM_ADMINVIEW_PATH . '\admin_main.php';
-        echo ob_get_clean();
+        // ob_start();
+        admin_show();
+        // echo ob_get_clean();
     }
 }
