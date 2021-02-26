@@ -3,11 +3,11 @@
  * This is where all the constants are defined
  */
 // Basic constants
-define( 'PLUGIN_NAME', 'BLIM' );
+define( 'BLIM_PLUGIN_NAME', 'BLIM' );
 
-define( 'VER', 'v1.0' );
+define( 'BLIM_VER', 'v1.0' );
 
-define( 'URL_SLASH', '/' );
+define( 'BLIM_URL_SLASH', '/' );
 
 // Plugin Basename
 define( 'BLIM_PLUGIN_BASENAME', basename(BLIM_FILE) );
@@ -77,22 +77,22 @@ define( 'BLIM_VOTEVIEW_PATH', BLIM_VIEW_PATH . DIRECTORY_SEPARATOR . 'vote' );
 // = CSS Path =
 // ===================
 
-define( 'BLIM_ASSETSCSS_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'css' );
+define( 'BLIM_ASSETSCSS_PATH', BLIM_ASSETS_PATH . BLIM_URL_SLASH . 'css' );
 
-define( 'BLIM_MAINSTYLE_PATH', BLIM_ASSETSCSS_PATH . URL_SLASH . 'blim_mainstyle.css' );
+define( 'BLIM_MAINSTYLE_PATH', BLIM_ASSETSCSS_PATH . BLIM_URL_SLASH . 'blim_mainstyle.css' );
 
 // ===================
 // = JS Path =
 // ===================
 
-define( 'BLIM_ASSETSJS_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'js' );
+define( 'BLIM_ASSETSJS_PATH', BLIM_ASSETS_PATH . BLIM_URL_SLASH . 'js' );
 
-define( 'BLIM_MAINSCRIPT_PATH', BLIM_ASSETSJS_PATH . URL_SLASH . 'blim_mainscript.js' );
+define( 'BLIM_MAINSCRIPT_PATH', BLIM_ASSETSJS_PATH . BLIM_URL_SLASH . 'blim_mainscript.js' );
 
 // ===================
 // = IMAGE Path =
 // ===================
 
-define( 'BLIM_ASSETSIMG_PATH', BLIM_ASSETS_PATH . URL_SLASH . 'img' );
+define( 'BLIM_ASSETSIMG_PATH', BLIM_ASSETS_PATH . BLIM_URL_SLASH . 'img' );
 
-define( 'BLIM_DEFAULT_IMAGE', BLIM_ASSETSIMG_PATH . URL_SLASH . 'default.jpg' );
+define( 'BLIM_DEFAULT_IMAGE', BLIM_ASSETSIMG_PATH . BLIM_URL_SLASH . 'default.jpg' );

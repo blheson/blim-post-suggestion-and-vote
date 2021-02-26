@@ -2,8 +2,8 @@
 Contributors: Udor Blessing
 Tags: posts, vote
 Requires at least: 4.0
-Tested up to: 5.4.2
-Stable tag: 3.2.4
+Tested up to: 5.6.2
+Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -38,7 +38,7 @@ Log in to your WordPress admin panel and go to Plugins -> Add New
 Type Blim Post Suggestion and Vote in the search box and click on search button.
 Find Blim Post Suggestion and Vote.
 Then click on Install
-Now after that activate the plugin.
+Now, after that activate the plugin.
 
 
 = Installing Via FTP =

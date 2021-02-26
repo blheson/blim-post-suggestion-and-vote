@@ -1,6 +1,9 @@
 <?php
 
-namespace Controller;
+namespace BlimPostSuggestionAndVote\Controller;
+use BlimPostSuggestionAndVote\View\Suggestion as suggestion;
+use BlimPostSuggestionAndVote\View\Vote as vote;
+use BlimPostSuggestionAndVote\View\Admin as admin;
 
 use WP_Post;
 
@@ -14,7 +17,7 @@ class Blim_Export_Controller
     static function suggestion( WP_Post $sibling_post )
     {
         ob_start();
-        suggestion_show( $sibling_post );
+        suggestion::blim_bpsv_suggestion_show( $sibling_post );
         return ob_get_clean();
     }
     /**
@@ -25,7 +28,7 @@ class Blim_Export_Controller
     static function vote( $vote_data )
     {
         ob_start();
-        vote_show( $vote_data );
+        vote::blim_bpsv_vote_show( $vote_data );
         return ob_get_clean();
     }
     /**
@@ -35,7 +38,7 @@ class Blim_Export_Controller
     static function plugin_options_page()
     {
         // ob_start();
-        admin_show();
+        admin::blim_bpsv_admin_show();
         // echo ob_get_clean();
     }
 }

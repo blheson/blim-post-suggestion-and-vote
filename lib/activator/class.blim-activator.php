@@ -1,7 +1,7 @@
 <?php
 
-namespace Activator;
-use Controller\Blim_Vote_Controller as vote;
+namespace BlimPostSuggestionAndVote\Activator;
+use BlimPostSuggestionAndVote\Controller\Blim_Vote_Controller as vote;
 class Blim_Activator
 {
     /**
@@ -21,7 +21,7 @@ class Blim_Activator
     {
         // reset options
         delete_option( 'blim_options' );
-        //delete all store votes
+        //delete all stored votes
         vote::delete();
     }
 }

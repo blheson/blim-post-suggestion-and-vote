@@ -1,6 +1,6 @@
 <?php
 
-namespace Controller;
+namespace BlimPostSuggestionAndVote\Controller;
 
 class Blim_Option_Controller
 {
@@ -11,7 +11,7 @@ class Blim_Option_Controller
     static function blim_register_option_page()
     {
         add_options_page( 'Blim settings', '	
-        Blim Post Suggestion and Vote', 'manage_options', 'blim_option_settings', 'Controller\Blim_Export_Controller::plugin_options_page' );
+        Blim Post Suggestion and Vote', 'manage_options', 'blim_option_settings', 'BlimPostSuggestionAndVote\Controller\Blim_Export_Controller::plugin_options_page' );
     }
     /**
      * Register a options setting

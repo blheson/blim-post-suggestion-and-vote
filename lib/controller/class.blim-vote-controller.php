@@ -1,9 +1,9 @@
 <?php
 
-namespace Controller;
+namespace BlimPostSuggestionAndVote\Controller;
 
-use Controller\Blim_Export_Controller as export;
-use Model\WPDB as wpdb;
+use BlimPostSuggestionAndVote\Controller\Blim_Export_Controller as export;
+use BlimPostSuggestionAndVote\Model\WPDB as wpdb;
 
 class Blim_Vote_Controller
 {
@@ -17,7 +17,7 @@ class Blim_Vote_Controller
      */
     static function get_table()
     {
-        if (is_null(self::$table))
+        if ( is_null(self::$table) )
             self::$table = self::$wpdb->prefix . 'postmeta';
         return self::$table;
     }
@@ -27,7 +27,7 @@ class Blim_Vote_Controller
      */
     static function get_wpdb()
     {
-        if (is_null(self::$wpdb))
+        if ( is_null( self::$wpdb ) )
             self::$wpdb = wpdb::get_db();
         return self::$wpdb;
     }
@@ -89,12 +89,12 @@ class Blim_Vote_Controller
     static function update()
     {
      
-        $vote_up = (int)$_REQUEST['vote_up'];
-        $vote_down = (int)$_REQUEST['vote_down'];
-        $post_id = (int) $_REQUEST['post_id'];
-        $nonce = $_REQUEST['_wpnonce'];
+        $vote_up = (int)$_REQUEST['blim_vote_up'];
+        $vote_down = (int)$_REQUEST['blim_vote_down'];
+        $post_id = (int) $_REQUEST['blim_post_id'];
+        $nonce = $_REQUEST['blim_wp_nonce'];
 
-      if( !wp_verify_nonce( $nonce, 'vote_'.$post_id ) ){
+      if( !wp_verify_nonce( $nonce, 'blim_vote_'.$post_id ) ){
           $res = false;
       }else{
         $wpdb = self::get_wpdb();

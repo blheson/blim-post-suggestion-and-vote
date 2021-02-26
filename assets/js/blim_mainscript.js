@@ -45,8 +45,24 @@ if (vote_down != null) {
     })
 }
 function send_fetch(vote_up, vote_down) {
+    let form_data = new FormData();
+    let body = {
+        method:'post',
+        action:'blim_update_vote_count',
+        blim_vote_up:vote_up,
+        blim_vote_down:vote_down,
+        blim_post_id:parseInt(blim_vote_object.blim_post_id),
+        blim_wp_nonce:blim_vote_object.blim_wp_nonce
+    }
+    for (i in body){
+        form_data.append(i,body[i])
+    }
+    let $request = new Request (blim_vote_object.ajax_url,{
+        method: 'POST',
+        body: form_data,
+      });
 
-    fetch(`${vote_object.ajax_url}?action=update_vote_count&vote_up=${vote_up}&vote_down=${vote_down}&post_id=${parseInt(vote_object.post_id)}&_wpnonce=${vote_object._wpnonce}`).then(response => {
+    fetch($request).then(response => {
 
         if (response.status === 200)
             return response.json();

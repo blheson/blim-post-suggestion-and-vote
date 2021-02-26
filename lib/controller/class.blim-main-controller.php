@@ -1,9 +1,9 @@
 <?php
 
-namespace Controller;
+namespace BlimPostSuggestionAndVote\Controller;
 
-use Controller\Blim_Export_Controller as export;
-use Controller\Blim_Vote_Controller as vote;
+use BlimPostSuggestionAndVote\Controller\Blim_Export_Controller as export;
+use BlimPostSuggestionAndVote\Controller\Blim_Vote_Controller as vote;
 
 class Blim_Main_Controller
 {
@@ -19,14 +19,14 @@ class Blim_Main_Controller
      */
     function enqueue_action()
     {
-        wp_enqueue_style( PLUGIN_NAME . 'main_style', BLIM_MAINSTYLE_PATH, array(), VER, 'all' );
+        wp_enqueue_style( BLIM_PLUGIN_NAME . 'main_style', BLIM_MAINSTYLE_PATH, array(), BLIM_VER, 'all' );
 
-        wp_enqueue_script( PLUGIN_NAME . '_main_js', BLIM_MAINSCRIPT_PATH, array(), VER, 'all' );
+        wp_enqueue_script( BLIM_PLUGIN_NAME . '_main_js', BLIM_MAINSCRIPT_PATH, array(), BLIM_VER, 'all' );
 
         wp_localize_script(
-            PLUGIN_NAME . '_main_js',
-            'vote_object',
-            array('ajax_url' => admin_url('admin-ajax.php'), 'post_id' => get_the_ID(),'_wpnonce'=> wp_create_nonce( 'vote_'.get_the_ID()))
+            BLIM_PLUGIN_NAME . '_main_js',
+            'blim_vote_object',
+            array('ajax_url' => admin_url('admin-ajax.php'), 'blim_post_id' => get_the_ID(),'blim_wp_nonce'=> wp_create_nonce( 'blim_vote_'.get_the_ID()))
         );
     }
 
@@ -36,27 +36,27 @@ class Blim_Main_Controller
     function activate_add_action()
     {
         if (is_admin()) { // admin actions
-            add_action( 'admin_menu', array('Controller\Blim_Option_Controller', 'blim_register_option_page') );
+            add_action( 'admin_menu', array('BlimPostSuggestionAndVote\Controller\Blim_Option_Controller', 'blim_register_option_page') );
 
-            add_action( 'wp_ajax_update_vote_count', array('Controller\Blim_Vote_Controller', 'update') );
+            add_action( 'wp_ajax_blim_update_vote_count', array('BlimPostSuggestionAndVote\Controller\Blim_Vote_Controller', 'update') );
 
-            add_action( 'wp_ajax_nopriv_update_vote_count', array('Controller\Blim_Vote_Controller', 'update') );
+            add_action( 'wp_ajax_nopriv_blim_update_vote_count', array('BlimPostSuggestionAndVote\Controller\Blim_Vote_Controller', 'update') );
 
             add_action( 'admin_enqueue_scripts', array($this, 'enqueue_action') );
 
-            add_action( 'admin_init', array('Controller\Blim_Option_Controller', 'blim_register_settings') );
+            add_action( 'admin_init', array('BlimPostSuggestionAndVote\Controller\Blim_Option_Controller', 'blim_register_settings') );
         } else {
             // non-admin enqueues, actions, and filters
             add_action( 'wp_enqueue_scripts', array($this, 'enqueue_action') );
         }
 
-        register_activation_hook( BLIM_FILE, array('Activator\Blim_Activator', 'plugin_activation') );
+        register_activation_hook( BLIM_FILE, array('BlimPostSuggestionAndVote\Activator\Blim_Activator', 'plugin_activation') );
         /**
          * The code that runs during plugin deactivation.
          * This action is documented activator/class.blim-activator.php
          */
 
-        register_deactivation_hook( BLIM_FILE, array( 'Activator\Blim_Activator', 'plugin_deactivation' ) );
+        register_deactivation_hook( BLIM_FILE, array( 'BlimPostSuggestionAndVote\Activator\Blim_Activator', 'plugin_deactivation' ) );
     }
     /**
      * Filter hook
