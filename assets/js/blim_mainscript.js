@@ -57,7 +57,7 @@ function send_fetch(vote_up, vote_down) {
     for (i in body){
         form_data.append(i,body[i])
     }
-    let $request = new Request (blim_vote_object.ajax_url,{
+    let $request = new Request (blim_vote_object.blim_ajax_url,{
         method: 'POST',
         body: form_data,
       });
