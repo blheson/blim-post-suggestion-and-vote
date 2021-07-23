@@ -79,7 +79,7 @@ padding: 7px 45px!important;
     text-align: center;
 }
 .blim-vote .vote-number p {
-    line-height: 1.99;
+    line-height: 2.39;
 }
 .blim-vote.blim-vote-up{
     border-left: 4px solid rgb(14 196 179);
@@ -97,6 +97,37 @@ p.vote-message{
     background-color: rgb(255 255 255);
     width: 20rem;
     padding: 9px;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;}
+.spinner-load{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border: .25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-load .75s linear infinite;
+    animation: spinner-load .75s linear infinite;
+}
+@keyframes spinner-load {
+    100% {
+        -webkit-transform: rotate(
+    360deg
+    ); 
+     transform: rotate(
+    360deg
+    );
+    }
 }
 @media (min-width:769px){
     .suggest_row{

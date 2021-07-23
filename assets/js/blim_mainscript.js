@@ -35,14 +35,24 @@ function get_uri() {
 
 if (vote_up != null) {
 
-    document.querySelector('div#vote-up').addEventListener('click', () => {
-        send_fetch(parseInt(vote_up.value) + 1, vote_down.value);
+    document.querySelector('div#vote-up').addEventListener('click', (e) => {
+       
+        send_fetch(parseInt(vote_up.value) + 1, vote_down.value); 
+        wait_fetch(document.querySelector('div#vote-up'))
     })
 }
 if (vote_down != null) {
-    document.querySelector('div#vote-down').addEventListener('click', () => {
-        send_fetch(vote_up.value, (parseInt(vote_down.value) + 1));
+    document.querySelector('div#vote-down').addEventListener('click', (e) => {
+      
+        send_fetch(vote_up.value, (parseInt(vote_down.value) + 1));  
+        wait_fetch(document.querySelector('div#vote-down'))
     })
+}
+function wait_fetch(target){
+   
+   target.querySelector('p').innerHTML =`<div class="spinner-load" role="status">
+   <span class="sr-only">Loading...</span>
+ </div>`
 }
 function send_fetch(vote_up, vote_down) {
     let form_data = new FormData();
@@ -57,12 +67,12 @@ function send_fetch(vote_up, vote_down) {
     for (i in body){
         form_data.append(i,body[i])
     }
-    let $request = new Request (blim_vote_object.ajax_url,{
+    let request = new Request (blim_vote_object.blim_ajax_url,{
         method: 'POST',
         body: form_data,
       });
 
-    fetch($request).then(response => {
+    fetch(request).then(response => {
 
         if (response.status === 200)
             return response.json();

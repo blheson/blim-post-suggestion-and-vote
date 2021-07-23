@@ -33,7 +33,7 @@ class Blim_Export_Controller
     }
     /**
      * Render suggested post into view
-     * @return string
+     * @return void
      */
     static function plugin_options_page()
     {

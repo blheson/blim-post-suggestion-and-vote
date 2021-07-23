@@ -4,6 +4,10 @@ namespace BlimPostSuggestionAndVote\View;
 
 class Admin
 {
+    /**
+     * Show admin settings page
+     * @return void
+     */
     static function blim_bpsv_admin_show()
     {
         $options = get_option('blim_options');
